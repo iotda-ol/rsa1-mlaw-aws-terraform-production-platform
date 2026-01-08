@@ -20,8 +20,8 @@ output "artifacts_bucket_name" {
   value       = module.s3.artifacts_bucket_name
 }
 
-output "logs_bucket_name" {
-  description = "Name of the logs S3 bucket"
+output "logs_bucket_id" {
+  description = "ID of the logs S3 bucket"
   value       = module.s3.logs_bucket_id
 }
 

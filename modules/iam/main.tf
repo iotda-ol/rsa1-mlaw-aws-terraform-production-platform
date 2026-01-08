@@ -210,7 +210,15 @@ resource "aws_iam_role_policy" "lambda_custom" {
         Action = [
           "ecs:ListTasks",
           "ecs:DescribeTasks",
-          "ecs:DescribeServices"
+          "ecs:DescribeServices",
+          "ecs:DescribeClusters"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "autoscaling:DescribeAutoScalingGroups"
         ]
         Resource = "*"
       },

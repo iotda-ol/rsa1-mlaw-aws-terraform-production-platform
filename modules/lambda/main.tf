@@ -61,7 +61,7 @@ resource "aws_lambda_function" "s3_processor" {
   filename         = "${path.module}/s3_processor.zip"
   function_name    = "${var.project_name}-s3-processor"
   role             = var.lambda_execution_role_arn
-  handler          = "index.handler"
+  handler          = "s3_processor.handler"
   source_code_hash = filebase64sha256("${path.module}/s3_processor.zip")
   runtime          = "python3.11"
   timeout          = 30
