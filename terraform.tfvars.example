@@ -1,0 +1,47 @@
+# Example Terraform Variables Configuration
+# Copy this file to terraform.tfvars and customize for your environment
+
+# General Configuration
+project_name = "prod-platform"
+aws_region   = "us-east-1"
+
+common_tags = {
+  Project     = "ProductionPlatform"
+  Environment = "Production"
+  ManagedBy   = "Terraform"
+  Owner       = "DevOps Team"
+}
+
+# VPC Configuration
+vpc_cidr               = "10.0.0.0/16"
+az_count               = 2
+enable_nat_gateway     = true
+enable_vpc_flow_logs   = true
+vpc_flow_logs_retention_days = 30
+
+# S3 Configuration
+s3_logs_retention_days = 90
+
+# EC2 Configuration
+ec2_instance_type    = "t3.micro"
+ec2_min_size         = 1
+ec2_max_size         = 4
+ec2_desired_capacity = 2
+
+# ECS Configuration
+ecs_container_image   = "nginx:latest"
+ecs_container_port    = 80
+ecs_task_cpu          = "256"
+ecs_task_memory       = "512"
+ecs_desired_count     = 2
+ecs_min_capacity      = 1
+ecs_max_capacity      = 10
+ecs_log_retention_days = 30
+
+# Lambda Configuration
+lambda_schedule_expression = "rate(5 minutes)"
+lambda_log_retention_days  = 30
+
+# CloudWatch Configuration
+create_sns_topic = false
+alarm_email      = ""  # Set to your email for alarm notifications
