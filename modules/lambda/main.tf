@@ -84,6 +84,18 @@ resource "aws_lambda_permission" "allow_s3" {
   source_arn    = var.artifacts_bucket_arn
 }
 
+# Note: S3 bucket notification is not configured by default to avoid
+# circular dependencies. To enable S3 event processing, add the following
+# to your S3 bucket configuration:
+#
+# resource "aws_s3_bucket_notification" "artifacts" {
+#   bucket = var.artifacts_bucket_name
+#   lambda_function {
+#     lambda_function_arn = module.lambda.s3_processor_function_arn
+#     events              = ["s3:ObjectCreated:*"]
+#   }
+# }
+
 # CloudWatch Alarms for Lambda monitoring
 resource "aws_cloudwatch_metric_alarm" "lambda_errors" {
   alarm_name          = "${var.project_name}-lambda-errors"
