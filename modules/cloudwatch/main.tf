@@ -91,7 +91,7 @@ resource "aws_cloudwatch_composite_alarm" "critical_infrastructure" {
   alarm_name        = "${var.project_name}-critical-infrastructure"
   alarm_description = "Composite alarm for critical infrastructure issues"
   actions_enabled   = true
-  alarm_actions     = var.alarm_actions
+  alarm_actions     = var.create_sns_topic ? [aws_sns_topic.cloudwatch_alarms[0].arn] : var.alarm_actions
 
   alarm_rule = "ALARM(${aws_cloudwatch_metric_alarm.high_error_rate.alarm_name}) OR ALARM(${aws_cloudwatch_metric_alarm.low_healthy_hosts.alarm_name})"
 
